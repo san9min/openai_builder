@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>코덱스, 나를 맞혀봐</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell" aria-label="코덱스, 나를 맞혀봐 게임">
+      <header class="app-header">
+        <button class="icon-button" type="button" aria-label="뒤로 가기">
+          <i data-lucide="arrow-left">←</i>
+        </button>
+        <div class="title-block">
+          <h1>코덱스, 나를 맞혀봐</h1>
+          <p>서로의 답을 질문으로 맞히는 게임</p>
+          <span id="roleBadge" class="role-badge">연결 중</span>
+        </div>
+        <button class="icon-button" type="button" aria-label="메뉴">
+          <i data-lucide="more-vertical">⋮</i>
+        </button>
+      </header>
+
+      <section class="round-panel" aria-label="라운드 정보">
+        <div class="topic-band">
+          <span>오늘의 주제</span>
+          <strong id="topicText">주제를 불러오는 중</strong>
+        </div>
+
+        <div class="answer-status" aria-label="비밀 답변 상태">
+          <div class="status-item">
+            <span class="status-icon user-icon" aria-hidden="true">
+              <i data-lucide="user-round">나</i>
+            </span>
+            <span><span id="humanAnswerLabel">Human</span> 답변: <b id="userAnswerStatus">설정 전</b></span>
+            <button class="text-button" id="showMyAnswerButton" type="button" hidden>내 답 보기</button>
+          </div>
+          <span class="divider" aria-hidden="true"></span>
+          <div class="status-item">
+            <span class="status-icon codex-icon" aria-hidden="true">
+              <i data-lucide="bot">C</i>
+            </span>
+            <span><span id="codexAnswerLabel">Codex</span> 답변: <b id="codexAnswerStatus">설정 전</b></span>
+          </div>
+        </div>
+
+        <div class="turn-row">
+          <div class="turn-label">
+            <i data-lucide="refresh-cw">↻</i>
+            <span id="turnStatus">내 비밀 답변을 정하는 중</span>
+          </div>
+          <span id="turnCount">시작 전</span>
+        </div>
+      </section>
+
+      <section class="chat-panel" aria-label="채팅">
+        <div id="chatLog" class="chat-log" aria-live="polite"></div>
+      </section>
+
+      <section class="composer" aria-label="메시지 입력">
+        <form id="messageForm" class="message-form">
+          <input
+            id="messageInput"
+            type="text"
+            autocomplete="off"
+            placeholder="나의 비밀 답변을 입력하세요"
+            aria-label="메시지"
+          />
+          <button class="send-button" id="sendButton" type="submit" aria-label="보내기">
+            <i data-lucide="send-horizontal">→</i>
+          </button>
+        </form>
+        <div id="quickActions" class="quick-actions" aria-label="빠른 동작"></div>
+      </section>
+
+      <template id="messageTemplate">
+        <article class="message">
+          <div class="avatar" aria-hidden="true"></div>
+          <div class="message-stack">
+            <div class="speaker"></div>
+            <div class="bubble"></div>
+            <time class="message-time"></time>
+          </div>
+        </article>
+      </template>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
